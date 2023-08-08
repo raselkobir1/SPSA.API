@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\DbContext\" />
     <Folder Include="DataAccess\Implementations\" />
     <Folder Include="DataAccess\Interfaces\" />
     <Folder Include="DataAccess\UnitOfWorks\" />
