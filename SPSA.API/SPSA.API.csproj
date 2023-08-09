@@ -22,9 +22,7 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\Implementations\" />
-    <Folder Include="DataAccess\Interfaces\" />
     <Folder Include="DataAccess\UnitOfWorks\" />
-    <Folder Include="Domain\" />
     <Folder Include="Helper\Configurations\" />
     <Folder Include="Manager\" />
   </ItemGroup>
