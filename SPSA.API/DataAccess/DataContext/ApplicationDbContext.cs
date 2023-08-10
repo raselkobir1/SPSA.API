@@ -17,6 +17,7 @@ namespace SPSA.API.DataAccess.DataContext
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleWiseMenu> RoleWiseMenus { get; set; } 
+        public virtual DbSet<UserToken> UserTokens { get; set; }  
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
