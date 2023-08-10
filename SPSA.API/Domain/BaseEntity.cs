@@ -26,10 +26,10 @@ namespace SPSA.API.Domain
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.IsDeleted).HasDefaultValueSql("0");
-            builder.Property(b => b.CreatedBy).HasDefaultValueSql("GETDATE()");
-            builder.Property(b => b.ModifiedBy).HasDefaultValueSql("GETDATE()");
-            builder.Property(b => b.CreatedDate).HasDefaultValueSql("datetime2");
-            builder.Property(b => b.ModifiedDate).HasDefaultValueSql("datetime2");
+            builder.Property(b => b.CreatedDate).HasDefaultValueSql("GETDATE()");
+            builder.Property(b => b.ModifiedDate).HasDefaultValueSql("GETDATE()");
+            builder.Property(b => b.CreatedDate).HasColumnType("datetime2");
+            builder.Property(b => b.ModifiedDate).HasColumnType("datetime2");
 
             builder.HasOne(b => b.CreatedByUser)
                 .WithMany()
