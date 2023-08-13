@@ -11,7 +11,7 @@ namespace SPSA.API.Controllers
     {
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Authinticate(AuthinticateDto dto) 
+        public async Task<IActionResult> Authinticate(SignInDto dto) 
         {
             return Ok( await Task.Run(() => new {}));
         }

@@ -1,4 +1,6 @@
 ﻿using SPSA.API.DataAccess.DataContext;
+using SPSA.API.DataAccess.Implementations;
+using SPSA.API.DataAccess.Interfaces;
 using System.Security.Claims;
 
 namespace SPSA.API.DataAccess.UnitOfWorks
@@ -59,6 +61,10 @@ namespace SPSA.API.DataAccess.UnitOfWorks
         {
             _dbContext = dbContext;
             _httpContextAccessor = httpContextAccessor;
+
+            Users = new UserRepository(dbContext);
         }
+
+        public IUserRepository Users { get; private set; }
     }
 }

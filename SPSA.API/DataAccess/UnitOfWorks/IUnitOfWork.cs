@@ -9,6 +9,7 @@
         long GetLoggedInUserId();
         (bool, string) HasDependency(string table, string id);
 
-
+        //IRoleRepository Roles { get; }
+        //IUserRepository Users { get; }
     }
 }
