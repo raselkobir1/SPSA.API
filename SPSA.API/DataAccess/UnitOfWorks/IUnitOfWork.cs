@@ -1,4 +1,6 @@
-﻿namespace SPSA.API.DataAccess.UnitOfWorks
+﻿using SPSA.API.DataAccess.Interfaces;
+
+namespace SPSA.API.DataAccess.UnitOfWorks
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -10,6 +12,6 @@
         (bool, string) HasDependency(string table, string id);
 
         //IRoleRepository Roles { get; }
-        //IUserRepository Users { get; }
+        IUserRepository Users { get; }
     }
 }

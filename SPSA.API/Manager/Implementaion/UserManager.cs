@@ -1,5 +1,6 @@
 ﻿using SPSA.API.DataAccess.UnitOfWorks;
 using SPSA.API.Domain.Dtos.Common;
+using SPSA.API.Helper.CommonMethods;
 using SPSA.API.Manager.Intrerface;
 
 namespace SPSA.API.Manager.Implementaion
@@ -12,9 +13,11 @@ namespace SPSA.API.Manager.Implementaion
             _unitOfWork = unitOfWork;
         }
 
-        public Task<ResponseModel> GetUserByEmail(string email)
+        public async Task<ResponseModel> GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.Users.GetWhere(x=> x.Email == email);
+            
+            return CommonResponse.SuccessResponseForGet(result);
         }
     }
 }
