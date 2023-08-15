@@ -14,10 +14,17 @@ namespace SPSA.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]   
-        public async Task<IActionResult> GetUserByEmail(string email)
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUser() 
         {
-            var response = await _userManager.GetUserByEmail(email);
+            var response = await _userManager.GetAllUsers();
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUserById(long id)
+        {
+            var response = await _userManager.GetUserById(id);
             return StatusCode(response.StatusCode, response);
         }
     }

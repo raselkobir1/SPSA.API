@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SPSA.API.Domain.Dtos;
+using SPSA.API.Manager.Intrerface;
 
 namespace SPSA.API.Controllers
 {
@@ -9,11 +9,17 @@ namespace SPSA.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IAuthManager _authManager;     
+        public AuthController(IAuthManager authManager)
+        {
+            _authManager = authManager;
+        }
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("signIn")] 
         public async Task<IActionResult> Authinticate(SignInDto dto) 
         {
-            return Ok( await Task.Run(() => new {}));
+            var response = await _authManager.SignIn(dto);
+            return StatusCode(response.StatusCode, response);
         }
     }
 }

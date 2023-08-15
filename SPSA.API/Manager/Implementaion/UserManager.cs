@@ -13,11 +13,25 @@ namespace SPSA.API.Manager.Implementaion
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<ResponseModel> GetAllUsers()
+        {
+            var users = await _unitOfWork.Users.GetAll();
+            return CommonResponse.SuccessResponseForGet(users);
+        }
+
         public async Task<ResponseModel> GetUserByEmail(string email)
         {
             var result = await _unitOfWork.Users.GetWhere(x=> x.Email == email);
             
             return CommonResponse.SuccessResponseForGet(result);
         }
+
+        public async Task<ResponseModel> GetUserById(long id)
+        {
+            var result = await _unitOfWork.Users.GetById(id);
+
+            return CommonResponse.SuccessResponseForGet(result);
+        }
+
     }
 }

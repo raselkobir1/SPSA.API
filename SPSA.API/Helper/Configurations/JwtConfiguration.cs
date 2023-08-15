@@ -2,7 +2,7 @@
 
 namespace SPSA.API.Helper.Configurations
 {
-    public class JwtTokenConfiguration
+    public class JwtConfiguration
     {
         [Required(AllowEmptyStrings = false)]
         public string Issuer { get; set; }

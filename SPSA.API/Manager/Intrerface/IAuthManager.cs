@@ -1,4 +1,5 @@
-﻿using SPSA.API.Domain.Dtos;
+﻿using SPSA.API.Domain;
+using SPSA.API.Domain.Dtos;
 using SPSA.API.Domain.Dtos.Common;
 
 namespace SPSA.API.Manager.Intrerface
@@ -7,6 +8,7 @@ namespace SPSA.API.Manager.Intrerface
     {
         Task<ResponseModel> SignIn(SignInDto dto);  
         Task<ResponseModel> SignOut(SignOutDto dto);  
+
         //Task<ResponseModel> GetNewJwtAccessTokenByRefreshTokenAsync(AccessTokenFromRefreshTokenDto dto);
     }
 }

@@ -4,6 +4,9 @@ namespace SPSA.API.Manager.Intrerface
 {
     public interface IUserManager
     {
-        Task<ResponseModel> GetUserByEmail(string email); 
+        Task<ResponseModel> GetUserByEmail(string email);
+        Task<ResponseModel> GetUserById(long id); 
+        Task<ResponseModel> GetAllUsers();  
+        
     }
 }
