@@ -1,5 +1,6 @@
 using SPSA.API;
 using SPSA.API.Helper.CommonMethods;
+using SPSA.API.Helper.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

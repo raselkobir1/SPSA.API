@@ -14,11 +14,19 @@ namespace SPSA.API.Controllers
         {
             _authManager = authManager;
         }
+
         [AllowAnonymous]
         [HttpPost("signIn")] 
-        public async Task<IActionResult> Authinticate(SignInDto dto) 
+        public async Task<IActionResult> SignIn(SignInDto dto)  
         {
             var response = await _authManager.SignIn(dto);
+            return StatusCode(response.StatusCode, response); 
+        }
+
+        [HttpPost("signOut")]
+        public async Task<IActionResult> signOut(SignOutDto dto)
+        {
+            var response = await _authManager.SignOut(dto);
             return StatusCode(response.StatusCode, response);
         }
     }

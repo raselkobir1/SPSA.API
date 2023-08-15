@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using SPSA.API.Domain;
 using SPSA.API.Domain.Dtos.Token;
 using SPSA.API.Helper.Configurations;

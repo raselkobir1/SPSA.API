@@ -62,9 +62,16 @@ namespace SPSA.API.Manager.Implementaion
             return CommonResponse.SuccessResponse("Signin successfull", signinResponse);
         }
 
-        public Task<ResponseModel> SignOut(SignOutDto dto)
+        public async Task<ResponseModel> SignOut(SignOutDto dto)
         {
-            throw new NotImplementedException();
+            var userToken = await _unitOfWork.Tokens.GetWhere(x => x.RefreshToken == dto.RefreshToken);
+            if (userToken == null) 
+                return CommonResponse.NotFoundResponse();
+
+            userToken.IsRevoked = true;
+            _unitOfWork.Tokens.Update(userToken);
+
+            return CommonResponse.SuccessResponse("SignOut succesfully");  
         }
     }
 }

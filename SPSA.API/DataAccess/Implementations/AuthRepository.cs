@@ -1,14 +1,13 @@
 ﻿using SPSA.API.DataAccess.DataContext;
 using SPSA.API.DataAccess.Interfaces;
+using SPSA.API.Domain;
 
 namespace SPSA.API.DataAccess.Implementations
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthRepository : GenericRepository<User>, IAuthRepository
     {
-        private readonly ApplicationDbContext _dbContext;
-        public AuthRepository(ApplicationDbContext dbContext)
+        public AuthRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-            _dbContext = dbContext;
         }
     }
 }
