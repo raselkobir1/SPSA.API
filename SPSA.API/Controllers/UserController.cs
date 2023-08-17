@@ -41,5 +41,11 @@ namespace SPSA.API.Controllers
             var response = await _userManager.GetUserById(id);
             return StatusCode(response.StatusCode, response);
         }
+
+        [HttpGet("delete/{id}")]
+        public async Task<IActionResult> DeleteUserById(long id) 
+        {
+            return Ok();
+        }
     }
 }
