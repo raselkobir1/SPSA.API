@@ -15,9 +15,16 @@ namespace SPSA.API.Controllers
         }
 
         [HttpPost("userAdd")]
-        public async Task<IActionResult> GetAllUser([FromBody] UserAddDto user)
+        public async Task<IActionResult> AddUser([FromBody] UserAddDto user)
         {
             var response = await _userManager.UserAdd(user);
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpPost("userUpdate")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto user) 
+        {
+            var response = await _userManager.UserUpdate(user);
             return StatusCode(response.StatusCode, response);
         }
 

@@ -3,7 +3,6 @@ using SPSA.API.Helper.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddInfrastructure(configuration);
 
@@ -21,6 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthentication();

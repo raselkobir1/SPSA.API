@@ -55,7 +55,6 @@ namespace SPSA.API
             #endregion
             #region Swagger config
             //services.AddAuthorization();
-            services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo

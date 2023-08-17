@@ -17,12 +17,14 @@ namespace SPSA.API.Manager.Implementaion
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<UserAddDto> _userAddValidator;
+        private readonly IValidator<UserUpdateDto> _userUpdateValidator; 
         private readonly IPasswordHasher<User> _passwordHasher;
-        public UserManager(IUnitOfWork unitOfWork, IValidator<UserAddDto> userAddValidator, IPasswordHasher<User> passwordHasher)
+        public UserManager(IUnitOfWork unitOfWork, IValidator<UserAddDto> userAddValidator, IPasswordHasher<User> passwordHasher, IValidator<UserUpdateDto> userUpdateValidator)
         {
             _unitOfWork = unitOfWork;
-            _userAddValidator = userAddValidator;  
-            _passwordHasher = passwordHasher;   
+            _userAddValidator = userAddValidator;
+            _passwordHasher = passwordHasher;
+            _userUpdateValidator = userUpdateValidator;
         }
 
         public async Task<ResponseModel> GetAllUsers()
@@ -72,6 +74,35 @@ namespace SPSA.API.Manager.Implementaion
             var userDto = user.Adapt<UserDto>();
 
             return CommonResponse.SuccessResponseForAdd(userDto);
+        }
+
+        public async Task<ResponseModel> UserUpdate(UserUpdateDto dto)
+        {
+            var user = await _unitOfWork.Users.GetById(dto.Id);
+
+            #region validation logic
+            var validationResult = _userUpdateValidator.Validate(dto);
+            if (!validationResult.IsValid)
+                return CommonResponse.ValidationErrorResponse(CommonMethods.ConvertFluentErrorMessages(validationResult.Errors));
+
+            if (await _unitOfWork.Users.Any(x => x.Email.Trim().ToLower() == dto.Email.Trim().ToLower() && x.Id != dto.Id))
+                return CommonResponse.ValidationErrorResponse(ValidationMessage.EmailAlreadyExists);
+
+            if (user == null)
+                return CommonResponse.NotFoundResponse();
+
+            //if (!await _unitOfWork.Roles.Any(x => x.Id == dto.RoleId))
+            //    return CommonResponse.ValidationErrorResponse(string.Format(ValidationMessage.Role_InvalidId, dto.RoleId));
+                #endregion
+
+            dto.Adapt(user);
+            user.SetCommonPropertiesForUpdate(_unitOfWork.GetLoggedInUserId());
+
+            _unitOfWork.Users.Update(user);
+            await _unitOfWork.SaveChange();
+            var userDto = user.Adapt<UserDto>();
+
+            return CommonResponse.SuccessResponseForUpdate(userDto);
         }
     }
 }
