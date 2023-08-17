@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SPSA.API.Domain.Dtos.Users;
 using SPSA.API.Manager.Intrerface;
 
 namespace SPSA.API.Controllers
@@ -12,6 +12,13 @@ namespace SPSA.API.Controllers
         public UserController(IUserManager userManager)
         {
             _userManager = userManager;
+        }
+
+        [HttpPost("userAdd")]
+        public async Task<IActionResult> GetAllUser([FromBody] UserAddDto user)
+        {
+            var response = await _userManager.UserAdd(user);
+            return StatusCode(response.StatusCode, response);
         }
 
         [HttpGet("users")]

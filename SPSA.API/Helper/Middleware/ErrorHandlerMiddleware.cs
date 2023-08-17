@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using OTA_Admin.WebAPI.Helper.Resources;
 using SPSA.API.Domain.Dtos.Common;
 using SPSA.API.Helper.CommonMethods;
+using SPSA.API.Helper.Resources;
 using System.Net;
 
 namespace SPSA.API.Helper.Middleware

@@ -1,5 +1,4 @@
 using SPSA.API;
-using SPSA.API.Helper.CommonMethods;
 using SPSA.API.Helper.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +26,6 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
 
 app.Run();

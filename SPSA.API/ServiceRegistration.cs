@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -25,7 +28,7 @@ namespace SPSA.API
             #region Options Config
             services.AddOptions<JwtConfiguration>().BindConfiguration(nameof(JwtConfiguration)).ValidateDataAnnotations();
             #endregion
-            #region Json Web Token Setup
+            #region Json Web Token config
             // Configure Authentication
             services.AddAuthentication(auth =>
             {
@@ -50,8 +53,17 @@ namespace SPSA.API
 
             });
             #endregion
-            #region Swagger setup
+            #region Swagger config
             //services.AddAuthorization();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "SPSA API",
+                });
+            });
             services.AddSwaggerGen(setup =>
             {
                 // Include 'SecurityScheme' to use JWT Authentication
@@ -78,6 +90,11 @@ namespace SPSA.API
                     }
                 });
             });
+            #endregion
+            #region Fluent Validation config
+            services.AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssemblyContaining<Program>();
+            services.AddFluentValidationRulesToSwagger();
             #endregion
 
 

@@ -1,5 +1,4 @@
-﻿using SPSA.API.Domain;
-using SPSA.API.Domain.Dtos;
+﻿using SPSA.API.Domain.Dtos;
 using SPSA.API.Domain.Dtos.Common;
 
 namespace SPSA.API.Manager.Intrerface

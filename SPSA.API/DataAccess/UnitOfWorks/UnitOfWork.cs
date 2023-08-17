@@ -38,9 +38,9 @@ namespace SPSA.API.DataAccess.UnitOfWorks
             throw new NotImplementedException();
         }
 
-        public int SaveChange()
+        public Task<int> SaveChange()
         {
-            return _dbContext.SaveChanges(); 
+            return _dbContext.SaveChangesAsync(); 
         }
 
         public void Dispose()

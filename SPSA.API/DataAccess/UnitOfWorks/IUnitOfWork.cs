@@ -4,7 +4,7 @@ namespace SPSA.API.DataAccess.UnitOfWorks
 {
     public interface IUnitOfWork : IDisposable
     {
-        int SaveChange(); 
+        Task<int> SaveChange(); 
         void BeginTransaction();
         void CommitTransaction();
         void RollBackTransaction();

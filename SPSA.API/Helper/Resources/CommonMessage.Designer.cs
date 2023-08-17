@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OTA_Admin.WebAPI.Helper.Resources {
+namespace SPSA.API.Helper.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OTA_Admin.WebAPI.Helper.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OTA_Admin.WebAPI.Helper.Resources.CommonMessage", typeof(CommonMessage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SPSA.API.Helper.Resources.CommonMessage", typeof(CommonMessage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

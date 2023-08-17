@@ -1,5 +1,5 @@
-﻿using OTA_Admin.WebAPI.Helper.Resources;
-using SPSA.API.Domain.Dtos.Common;
+﻿using SPSA.API.Domain.Dtos.Common;
+using SPSA.API.Helper.Resources;
 
 namespace SPSA.API.Helper.CommonMethods
 {

@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using OTA_Admin.WebAPI.Helper.Resources;
 using SPSA.API.DataAccess.UnitOfWorks;
 using SPSA.API.Domain;
 using SPSA.API.Domain.Dtos;
 using SPSA.API.Domain.Dtos.Common;
 using SPSA.API.Helper.CommonMethods;
 using SPSA.API.Helper.Configurations;
+using SPSA.API.Helper.Resources;
 using SPSA.API.Manager.Intrerface;
 
 namespace SPSA.API.Manager.Implementaion
@@ -26,8 +26,11 @@ namespace SPSA.API.Manager.Implementaion
         public async Task<ResponseModel> SignIn(SignInDto dto)
         {
             var user = await _unitOfWork.Users.GetWhere(x => x.Email == dto.Email);
-            if(user == null && !user.IsActive)
+            if(user != null && !user.IsActive)
                 return CommonResponse.ValidationErrorResponse(CommonMessage.InactiveUser);
+
+            if(user == null)
+                return CommonResponse.ValidationErrorResponse(CommonMessage.InvalidEmailOrPassword);
 
             var result = _passwordHasher.VerifyHashedPassword(user, user.Password, dto.Password);
             if (result != PasswordVerificationResult.Success)
@@ -47,7 +50,7 @@ namespace SPSA.API.Manager.Implementaion
             };
 
             await _unitOfWork.Tokens.Add(token);
-            _unitOfWork.SaveChange();
+            await _unitOfWork.SaveChange();
 
             var signinResponse = new SigninResponseDto() 
             {
@@ -70,6 +73,7 @@ namespace SPSA.API.Manager.Implementaion
 
             userToken.IsRevoked = true;
             _unitOfWork.Tokens.Update(userToken);
+            await _unitOfWork.SaveChange();
 
             return CommonResponse.SuccessResponse("SignOut succesfully");  
         }
