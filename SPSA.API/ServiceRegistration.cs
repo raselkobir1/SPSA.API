@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -10,8 +11,10 @@ using SPSA.API.DataAccess.DataContext;
 using SPSA.API.DataAccess.UnitOfWorks;
 using SPSA.API.Domain;
 using SPSA.API.Helper.Configurations;
+using SPSA.API.Helper.CustomModelFilter;
 using SPSA.API.Manager.Implementaion;
 using SPSA.API.Manager.Intrerface;
+using System.Diagnostics;
 using System.Text;
 
 namespace SPSA.API
@@ -21,13 +24,17 @@ namespace SPSA.API
         private static readonly string connection = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["DefaultConnection"];
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
         {
+            #region ConnectionString Config
             //var connection = configuration["ConnectionStrings:DefaultConnection"]; // 2nd way
-            services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(connection));
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddDbContextPool<ApplicationDbContext>(
+                options => options.UseSqlServer(connection)
+                .LogTo(message => Debug.WriteLine(message), LogLevel.Information));
+            #endregion
+
             #region Options Config
             services.AddOptions<JwtConfiguration>().BindConfiguration(nameof(JwtConfiguration)).ValidateDataAnnotations();
             #endregion
+
             #region Json Web Token config
             // Configure Authentication
             services.AddAuthentication(auth =>
@@ -53,6 +60,7 @@ namespace SPSA.API
 
             });
             #endregion
+
             #region Swagger config
             //services.AddAuthorization();
             services.AddSwaggerGen(options =>
@@ -90,12 +98,23 @@ namespace SPSA.API
                 });
             });
             #endregion
+
+            #region Custom model validator filter
+            // Disable Automatic Model validation
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+            // Adding Custom Validation
+            services.AddControllers(options => options.Filters.Add<CustomModelValidator>());
+
+            #endregion
+
             #region Fluent Validation config
             services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblyContaining<Program>();
             services.AddFluentValidationRulesToSwagger();
             #endregion
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 
             //Application service

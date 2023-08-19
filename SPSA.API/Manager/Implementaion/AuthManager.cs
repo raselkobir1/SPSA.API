@@ -30,7 +30,7 @@ namespace SPSA.API.Manager.Implementaion
                 return CommonResponse.ValidationErrorResponse(CommonMessage.InactiveUser);
 
             if(user == null)
-                return CommonResponse.ValidationErrorResponse(CommonMessage.InvalidEmailOrPassword);
+                return CommonResponse.NotFoundResponse(CommonMessage.InvalidEmailOrPassword); 
 
             var result = _passwordHasher.VerifyHashedPassword(user, user.Password, dto.Password);
             if (result != PasswordVerificationResult.Success)

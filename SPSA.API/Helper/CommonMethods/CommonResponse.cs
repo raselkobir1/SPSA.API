@@ -116,13 +116,13 @@ namespace SPSA.API.Helper.CommonMethods
         }
 
         //404
-        public static ResponseModel NotFoundResponse()
+        public static ResponseModel NotFoundResponse(string? data = null)
         {
             return new ResponseModel
             {
                 StatusCode = StatusCodes.Status404NotFound,
                 Message = CommonMessage.NotFound,
-                Data = null
+                Data = data
             };
         }
 
