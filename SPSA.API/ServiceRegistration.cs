@@ -122,6 +122,7 @@ namespace SPSA.API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IAuthManager, AuthManager>();
+            services.AddScoped<ITokenManager, TokenManager>();
             services.AddScoped<IUserManager, UserManager>();
 
         }
