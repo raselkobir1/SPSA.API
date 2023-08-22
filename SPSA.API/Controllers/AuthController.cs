@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SPSA.API.Domain.Dtos;
+using SPSA.API.Domain.Dtos.Auths;
 using SPSA.API.Manager.Intrerface;
 
 namespace SPSA.API.Controllers

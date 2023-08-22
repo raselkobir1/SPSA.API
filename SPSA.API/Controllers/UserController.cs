@@ -29,9 +29,9 @@ namespace SPSA.API.Controllers
         }
 
         [HttpGet("users")]
-        public async Task<IActionResult> GetAllUser() 
+        public async Task<IActionResult> GetAllUser([FromQuery] UserFilterDto dto) 
         {
-            var response = await _userManager.GetAllUsers();
+            var response = await _userManager.GetPasignatedUserResult(dto);
             return StatusCode(response.StatusCode, response);
         }
 

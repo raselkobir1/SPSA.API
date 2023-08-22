@@ -9,7 +9,7 @@ namespace SPSA.API.Manager.Intrerface
         Task<ResponseModel> UserUpdate(UserUpdateDto dto);  
         Task<ResponseModel> GetUserByEmail(string email);
         Task<ResponseModel> GetUserById(long id); 
-        Task<ResponseModel> GetAllUsers();  
+        Task<ResponseModel> GetPasignatedUserResult(UserFilterDto dto);    
         
     }
 }

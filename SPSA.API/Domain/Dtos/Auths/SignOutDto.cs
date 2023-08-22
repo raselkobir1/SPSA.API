@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SPSA.API.Domain.Dtos
+namespace SPSA.API.Domain.Dtos.Auths
 {
     public class SignOutDto
     {

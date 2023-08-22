@@ -1,4 +1,4 @@
-﻿using SPSA.API.Domain.Dtos;
+﻿using SPSA.API.Domain.Dtos.Auths;
 using SPSA.API.Domain.Dtos.Common;
 
 namespace SPSA.API.Manager.Intrerface

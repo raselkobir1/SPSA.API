@@ -51,7 +51,7 @@ namespace SPSA.API.Manager.Implementaion
             _unitOfWork.Tokens.Update(token);
             await _unitOfWork.SaveChange();
 
-            return CommonResponse.SuccessResponse("",token);
+            return CommonResponse.SuccessResponse("Revoke successfull",token);
         }
     }
 }

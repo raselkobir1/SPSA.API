@@ -27,12 +27,11 @@ namespace SPSA.API.Manager.Implementaion
             _userUpdateValidator = userUpdateValidator;
         }
 
-        public async Task<ResponseModel> GetAllUsers()
+        public async Task<ResponseModel> GetPasignatedUserResult(UserFilterDto dto)
         {
-            var users = await _unitOfWork.Users.GetAll();
-            return CommonResponse.SuccessResponseForGet(users);
+            var result = await _unitOfWork.Users.GetPasignatedUserResult(dto); 
+            return CommonResponse.SuccessResponseForGet(result);
         }
-
         public async Task<ResponseModel> GetUserByEmail(string email)
         {
             var result = await _unitOfWork.Users.GetWhere(x=> x.Email == email);

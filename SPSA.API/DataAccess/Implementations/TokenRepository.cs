@@ -11,9 +11,5 @@ namespace SPSA.API.DataAccess.Implementations
         {
             
         }
-        //public Task<UserToken> GetRefreshToken(RefreshTokenFilterDto refreshToken)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

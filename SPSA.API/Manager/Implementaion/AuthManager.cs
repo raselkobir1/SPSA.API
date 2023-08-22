@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using SPSA.API.DataAccess.UnitOfWorks;
 using SPSA.API.Domain;
-using SPSA.API.Domain.Dtos;
+using SPSA.API.Domain.Dtos.Auths;
 using SPSA.API.Domain.Dtos.Common;
 using SPSA.API.Helper.CommonMethods;
 using SPSA.API.Helper.Configurations;
