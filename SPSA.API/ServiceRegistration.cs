@@ -113,6 +113,7 @@ namespace SPSA.API
             services.AddFluentValidationRulesToSwagger();
             #endregion
 
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
