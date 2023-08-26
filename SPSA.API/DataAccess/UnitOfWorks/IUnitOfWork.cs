@@ -11,9 +11,8 @@ namespace SPSA.API.DataAccess.UnitOfWorks
         long GetLoggedInUserId();
         (bool, string) HasDependency(string table, string id);
 
-        //IRoleRepository Roles { get; }
+        IRoleRepository Roles { get; }
         IUserRepository Users { get; }
         ITokenRepository Tokens { get; } 
-        //IAuthRepository Auths { get; } 
     }
 }

@@ -63,14 +63,14 @@ namespace SPSA.API.DataAccess.UnitOfWorks
             _httpContextAccessor = httpContextAccessor;
 
             Users = new UserRepository(dbContext);
-            Tokens = new TokenRepository(dbContext);    
-            //Auths = new AuthRepository(dbContext);
+            Tokens = new TokenRepository(dbContext);
+            Roles = new RoleRepository(dbContext); 
         }
 
         public IUserRepository Users { get; private set; }
 
         public ITokenRepository Tokens { get; private set; }
 
-        //public IAuthRepository Auths { get; private set; }
+        public IRoleRepository Roles { get; private set; }  
     }
 }
