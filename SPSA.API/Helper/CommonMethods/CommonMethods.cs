@@ -24,6 +24,8 @@ namespace SPSA.API.Helper.CommonMethods
         public static DateTime GetCurrentTime()
         {
             return DateTime.UtcNow.Add(TimeSpan.FromHours(6));
+            //var x = DateTimeOffset.UtcNow;
+            ///return DateTimeOffset.UtcNow.DateTime;
         }
         public static List<string> ConvertFluentErrorMessages(List<FluentValidation.Results.ValidationFailure> errors)
         {

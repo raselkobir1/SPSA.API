@@ -1,5 +1,6 @@
 using SPSA.API;
 using SPSA.API.Helper.Middleware;
+using SPSA.API.Helper.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 var AllowOrigins = "_AllowSpecificOrigins";
@@ -45,5 +46,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers().RequireAuthorization();
+
+app.MapHub<PushNotificationHub>("/signalr/push-notification", option =>
+{
+    // option.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents;
+});
 
 app.Run();

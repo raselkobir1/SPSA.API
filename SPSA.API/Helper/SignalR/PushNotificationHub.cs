@@ -22,19 +22,22 @@ namespace SPSA.API.Helper.SignalR
             userConnectionMap[userId] = connectionId;
             await Groups.AddToGroupAsync(Context.ConnectionId, "RoleId");
 
+            await Clients.All.SendAsync("PushNotification",$"{Context.ConnectionId} has joined");
+
             await base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
-            // Remove the user ID from the connection map when a user disconnects
+            // Remove the user ID from the connection map when a user disconnects 
             var userId = Convert.ToInt64(Context.UserIdentifier);
 
             if (userConnectionMap.ContainsKey(userId))
             {
                 userConnectionMap.Remove(userId);
             }
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "RoleId");  
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "RoleId");
+            await Clients.All.SendAsync("PushNotification", $"{Context.ConnectionId} has disconnect");
             await base.OnDisconnectedAsync(exception);    
         }
 
