@@ -56,8 +56,8 @@ namespace SPSA.API.Manager.Implementaion
             if (await _unitOfWork.Users.Any(x => x.Email == dto.Email.Trim().ToLower() && !x.IsDeleted))
                 return CommonResponse.ValidationErrorResponse(ValidationMessage.EmailAlreadyExists);
 
-            //if (!await _unitOfWork.Roles.Any(x => x.Id == dto.RoleId))
-            //    return CommonResponse.ValidationErrorResponse(string.Format(ValidationMessage.Role_InvalidId, dto.RoleId));
+            if (!await _unitOfWork.Roles.Any(x => x.Id == dto.RoleId))
+                return CommonResponse.ValidationErrorResponse(string.Format(ValidationMessage.InvalidRoleId, dto.RoleId)); 
             #endregion
 
             var user = dto.Adapt<User>();
@@ -90,9 +90,9 @@ namespace SPSA.API.Manager.Implementaion
             if (user == null)
                 return CommonResponse.NotFoundResponse();
 
-            //if (!await _unitOfWork.Roles.Any(x => x.Id == dto.RoleId))
-            //    return CommonResponse.ValidationErrorResponse(string.Format(ValidationMessage.Role_InvalidId, dto.RoleId));
-                #endregion
+            if (!await _unitOfWork.Roles.Any(x => x.Id == dto.RoleId))
+                return CommonResponse.ValidationErrorResponse(string.Format(ValidationMessage.InvalidRoleId, dto.RoleId));
+            #endregion
 
             dto.Adapt(user);
             user.SetCommonPropertiesForUpdate(_unitOfWork.GetLoggedInUserId());

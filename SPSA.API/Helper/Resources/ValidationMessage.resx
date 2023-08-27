@@ -120,4 +120,7 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>Email already exists. </value>
   </data>
+  <data name="InvalidRoleId" xml:space="preserve">
+    <value>Invalid role Id [{0}].</value>
+  </data>
 </root>

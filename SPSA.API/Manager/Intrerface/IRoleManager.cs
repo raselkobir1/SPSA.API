@@ -9,5 +9,6 @@ namespace SPSA.API.Manager.Intrerface
         Task<ResponseModel> RoleUpdate(RoleUpdateDto dto);
         Task<ResponseModel> GetRoleById(long id); 
         Task<ResponseModel> GetPasignatedUserResult(RoleFilterDto dto);
+        Task<ResponseModel> GetDropdownForRoles();
     }
 }

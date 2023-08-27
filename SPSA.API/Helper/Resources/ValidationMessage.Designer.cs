@@ -68,5 +68,14 @@ namespace SPSA.API.Helper.Resources {
                 return ResourceManager.GetString("EmailAlreadyExists", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid role Id [{0}]..
+        /// </summary>
+        public static string InvalidRoleId {
+            get {
+                return ResourceManager.GetString("InvalidRoleId", resourceCulture);
+            }
+        }
     }
 }
