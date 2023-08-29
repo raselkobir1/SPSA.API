@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
+using SPSA.API.Domain.Dtos.Common.Pageing;
 
 namespace SPSA.API.Domain.Dtos.Menus
 {
-    public class MenuFilterDto
+    public class MenuFilterDto: BaseFilterDto
     {
         public string? Name { get; set; } 
     }

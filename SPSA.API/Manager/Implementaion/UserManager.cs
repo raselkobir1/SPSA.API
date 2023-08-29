@@ -53,7 +53,7 @@ namespace SPSA.API.Manager.Implementaion
             if (!validationResult.IsValid)
                 return CommonResponse.ValidationErrorResponse(CommonMethods.ConvertFluentErrorMessages(validationResult.Errors));
 
-            if (await _unitOfWork.Users.Any(x => x.Email == dto.Email.Trim().ToLower() && !x.IsDeleted))
+            if (await _unitOfWork.Users.Any(x => x.Email.Trim().ToLower() == dto.Email.Trim().ToLower() && !x.IsDeleted))
                 return CommonResponse.ValidationErrorResponse(ValidationMessage.EmailAlreadyExists);
 
             if (!await _unitOfWork.Roles.Any(x => x.Id == dto.RoleId))

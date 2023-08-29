@@ -77,5 +77,14 @@ namespace SPSA.API.Helper.Resources {
                 return ResourceManager.GetString("InvalidRoleId", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu name already exists. Please try different one. .
+        /// </summary>
+        public static string MenuAlreadyExists {
+            get {
+                return ResourceManager.GetString("MenuAlreadyExists", resourceCulture);
+            }
+        }
     }
 }

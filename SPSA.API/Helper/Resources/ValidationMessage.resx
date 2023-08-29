@@ -123,4 +123,7 @@
   <data name="InvalidRoleId" xml:space="preserve">
     <value>Invalid role Id [{0}].</value>
   </data>
+  <data name="MenuAlreadyExists" xml:space="preserve">
+    <value>Menu name already exists. Please try different one. </value>
+  </data>
 </root>

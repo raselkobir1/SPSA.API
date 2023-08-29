@@ -64,13 +64,16 @@ namespace SPSA.API.DataAccess.UnitOfWorks
 
             Users = new UserRepository(dbContext);
             Tokens = new TokenRepository(dbContext);
-            Roles = new RoleRepository(dbContext); 
+            Roles = new RoleRepository(dbContext);
+            Menus = new MenuRepository(dbContext);
         }
 
         public IUserRepository Users { get; private set; }
 
         public ITokenRepository Tokens { get; private set; }
 
-        public IRoleRepository Roles { get; private set; }  
+        public IRoleRepository Roles { get; private set; }
+
+        public IMenuRepository Menus { get; private set; }
     }
 }

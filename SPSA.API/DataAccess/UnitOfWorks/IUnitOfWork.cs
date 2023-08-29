@@ -13,6 +13,7 @@ namespace SPSA.API.DataAccess.UnitOfWorks
 
         IRoleRepository Roles { get; }
         IUserRepository Users { get; }
-        ITokenRepository Tokens { get; } 
+        ITokenRepository Tokens { get; }
+        IMenuRepository Menus { get; }  
     }
 }
