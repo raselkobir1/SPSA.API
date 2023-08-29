@@ -28,7 +28,7 @@ namespace SPSA.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpPost("ddMenu")]
+        [HttpPost("addMenu")]
         public async Task<IActionResult> AddMenu(MenuAddDto dto)
         {
             var response = await _menuManager.MenuAdd(dto);

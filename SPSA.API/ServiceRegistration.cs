@@ -119,13 +119,13 @@ namespace SPSA.API
 
 
             //Application service
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IAuthManager, AuthManager>();
-            services.AddScoped<ITokenManager, TokenManager>();
+            services.AddScoped<ITokenManager,TokenManager>();
             services.AddScoped<IUserManager, UserManager>();
             services.AddScoped<IRoleManager, RoleManager>();
+            services.AddScoped<IMenuManager, MenuManager>(); 
 
         }
     }

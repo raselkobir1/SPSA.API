@@ -11,7 +11,7 @@ namespace SPSA.API.Domain.Dtos.Menus
     {
         public MenuFilterDtoValidator()
         {
-            RuleFor(obj => obj.Name).NotEmpty();
+            RuleFor(obj => obj.Name).MaximumLength(20);
         }
     }
 }
