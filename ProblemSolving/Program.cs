@@ -9,6 +9,13 @@ using ProblemSolving.LeetCode;
 //Console.WriteLine(object1);
 //Console.WriteLine(object2);
 
-ValidParentheses x = new();
-var res = x.IsValid("x(){}x");
+//ValidParentheses x = new();
+//var res = x.IsValid("(){}}{")
+
+TwoSumProblem p = new();
+//string[] x = { "flower", "flow", "flight" };
+//p.LongestCommonPrefix(x);
+var val = p.ProduceEvenNumber(5);
+
+//Console.WriteLine(res); 
 Console.ReadLine(); 

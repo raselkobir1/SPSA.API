@@ -10,22 +10,34 @@ namespace ProblemSolving.LeetCode
     {
         public bool IsValid(string s)
         {
-
-            var arry = s.ToCharArray();
-            //if( arry.Count() / 2 != 0)
-            //    return false;
-
-            var x = arry.Count() / 2;
-
-            string data = "(){}[]";
-            for (int i = 0; i < data.Length -1; i++)
+            Dictionary<char, char> bracketsMap = new Dictionary<char, char>
             {
-                var isValid = data.Contains(arry[i]);
-                if (!isValid)
-                    return false;
+                {'{',  '}'},
+                {'(',  ')'},
+                {'[',  ']'},
             };
+            Stack<char> openBrackets = new Stack<char>();
 
-            return true;
+            foreach (char bracket in s)
+            {
+                if (bracketsMap.ContainsKey(bracket))
+                {
+                    openBrackets.Push(bracket);
+                }
+                else
+                {
+                    if (openBrackets.Count == 0)
+                    {
+                        return false;
+                    }
+                    if (bracketsMap[openBrackets.Pop()] == bracket)
+                    {
+                        continue;
+                    };
+                    return false;
+                }
+            }
+            return openBrackets.Count == 0;
         }
     }
 }

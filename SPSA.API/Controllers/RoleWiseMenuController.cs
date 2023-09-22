@@ -7,6 +7,7 @@ namespace SPSA.API.Controllers
     [ApiController]
     public class RoleWiseMenuController : ControllerBase
     {
+        [HttpGet]   
         public async Task<IActionResult> GetRoleWiseMenus()
         {
             return Ok();

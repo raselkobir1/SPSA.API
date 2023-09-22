@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using SPSA.API.DataAccess.DataContext;
 using SPSA.API.DataAccess.UnitOfWorks;
 using SPSA.API.Domain;
+using SPSA.API.Helper.BackgroundJob;
 using SPSA.API.Helper.Configurations;
 using SPSA.API.Helper.CustomModelFilter;
 using SPSA.API.Manager.Implementaion;
@@ -24,6 +25,7 @@ namespace SPSA.API
         private static readonly string connection = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["DefaultConnection"];
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
         {
+            services.AddHostedService<NotificationsBackgroundJob>();
             #region ConnectionString Config
             //var connection = configuration["ConnectionStrings:DefaultConnection"]; // 2nd way
             services.AddDbContextPool<ApplicationDbContext>(

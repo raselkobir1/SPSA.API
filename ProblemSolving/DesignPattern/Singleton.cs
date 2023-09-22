@@ -11,29 +11,20 @@ namespace ProblemSolving.DesignPattern
         private static Singleton instance;
         private static readonly object lockObject = new object();
         private Singleton() { }
-
         public static Singleton Instance
         {
             get
             {
-                // Double-check locking for thread safety
                 if (instance == null)
                 {
                     lock (lockObject)
                     {
-                        if (instance == null)
-                        {
-                            instance = new Singleton();
-                        }
+                        instance ??= new Singleton();
                     }
                 }
                 return instance;
             }
         }
-
-        public void SomeMethod(string message)
-        {
-            Console.WriteLine($"Singleton instance method called.  {message}");
-        }
+        public string SomeMethod(string message) => $"Hello! {message}";
     }
 }
